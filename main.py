@@ -11,7 +11,9 @@ with open("channels.json") as f:
 
 @client.event
 async def on_ready():
+    print("start cloning...")
     for channel_id, data in channels.items():
+        print(f"starting process {channel_id}")
         channel: Optional[discord.TextChannel] = client.get_channel(int(channel_id))
         if channel is None:
             print(f"channel {channel_id} is not found. continue...")
@@ -37,5 +39,6 @@ async def on_ready():
                     allowed_mentions=discord.AllowedMentions.none(),
                     thread=thread,
                 )
+    print("end process")
 
 client.run(os.environ["DISCORD_BOT_TOKEN"])
