@@ -31,7 +31,7 @@ async def on_ready():
                 print(f"base channel {base_id} is not found. continue...")
             async for msg in base_channel.history(limit=None, oldest_first=True):
                 await webhook.send(
-                    content=msg.content + f"\n\n`{msg.created_at.strftime('%Y/%m/%d %H:%M:%S')}`",
+                    content=msg.content + f" (`{msg.created_at.strftime('%Y/%m/%d %H:%M:%S')})`",
                     username=msg.author.name,
                     avatar_url=msg.author.avatar.url,
                     files=[discord.File(io.BytesIO(await x.read()), x.filename, spoiler=x.is_spoiler()) for x in msg.attachments],
